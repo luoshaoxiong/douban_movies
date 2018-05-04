@@ -1,0 +1,71 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+html, body {
+    height: 100%;
+}
+main {
+    height: calc(100% - 50px);
+}
+section {
+    display: none;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+}
+.show {
+    display: block;
+}
+.movie {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+.movie-preview {
+    width: 70px;
+    float: left;
+}
+.movie-introduce {
+    float: left;
+    margin-left: 10px;
+}
+.movie-title {
+    font-weight: bold;
+}
+.movie-detail {
+    color: #999;
+    font-size: 12px;
+    line-height: 1.2;
+    margin-top: 4px;
+}
+.score {
+    color: #FF5722;
+}
+footer {
+    display: flex;
+    border-top: 1px solid #ccc;
+    height: 50px;
+    color: #666;
+    font-size: 14px;
+}
+.active {
+    color: #FF5722;
+}
+footer div{
+    flex: 1;
+    text-align: center;
+    padding-top: 6px;
+    cursor: pointer;
+}
+footer div i,
+footer div span {
+    display: inline-block;
+    width: 100%;
+}

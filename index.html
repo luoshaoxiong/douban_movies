@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_440195_fw8hsnrso53wstt9.css
+">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <main>
+        <section class="show">
+            <div class="top50-container">
+                <div class="movie clearfix">
+                    <img src="image/movie1.png" class="movie-preview"/>
+                    <div class="movie-introduce">
+                        <dt class="movie-title">肖申克的救赎</dt>
+                        <dl class="movie-detail"><span class="score">9.6</span>分/<span class="collection">199999</span>收藏</dl>
+                        <dl class="movie-detail"><span class="year">1994</span>/<span class="type">犯罪</span>/<span>剧情</span></dl>
+                        <dl class="movie-detail">导演：<span class="director">shaoxiong</span></dl>
+                        <dl class="movie-detail">主演：<span class="actor">少雄</span></dl>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>beimei</section>
+        <section>search</section>
+    </main>
+    <footer>
+        <div class="active"><i class="iconfont icon-paihang"></i><span>Top50</span></div>
+        <div><i class="iconfont icon-beimei"></i><span>北美</span></div>
+        <div><i class="iconfont icon-search"></i><span>搜索</span></div>
+    </footer>
+</body>
+<script>
+    (function init() {
+//        initTop50();
+//        initBeimei();
+//        initSearch();
+
+        $('footer div').on('click', function() {
+            $(this).addClass('active')
+                    .siblings()
+                    .removeClass('active');
+            $('section').eq($(this).index())
+                    .addClass('show')
+                    .siblings()
+                    .removeClass('show');
+        })
+    })();
+
+    function initTop50() {
+        setData();
+        bind();
+    }
+
+    function bind() {
+        // 滚动到底则再次加载
+    }
+</script>
+</html>
