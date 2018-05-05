@@ -13,8 +13,8 @@
 <body>
     <main>
         <section class="show">
-            <div class="top50-container">
-                <div class="movie clearfix">
+            <div class="top250-container">
+                <!--<div class="movie clearfix">
                     <img src="image/movie1.png" class="movie-preview"/>
                     <div class="movie-introduce">
                         <dt class="movie-title">肖申克的救赎</dt>
@@ -23,21 +23,22 @@
                         <dl class="movie-detail">导演：<span class="director">shaoxiong</span></dl>
                         <dl class="movie-detail">主演：<span class="actor">少雄</span></dl>
                     </div>
-                </div>
+                </div>-->
             </div>
+            <div class="loading"><i class="iconfont icon-loading"></i></div>
         </section>
         <section>beimei</section>
         <section>search</section>
     </main>
     <footer>
-        <div class="active"><i class="iconfont icon-paihang"></i><span>Top50</span></div>
+        <div class="active"><i class="iconfont icon-paihang"></i><span>Top250</span></div>
         <div><i class="iconfont icon-beimei"></i><span>北美</span></div>
         <div><i class="iconfont icon-search"></i><span>搜索</span></div>
     </footer>
 </body>
 <script>
     (function init() {
-//        initTop50();
+       initTop250();
 //        initBeimei();
 //        initSearch();
 
@@ -52,13 +53,73 @@
         })
     })();
 
-    function initTop50() {
-        setData();
+    function initTop250() {
+        getData();
         bind();
     }
 
     function bind() {
         // 滚动到底则再次加载
+    }
+    function getData() {
+        var data = {start: 0, count: 20};
+        $.ajax({
+            url: 'https://api.douban.com/v2/movie/top250',
+            data: data,
+            type: 'GET',
+            dataType: 'jsonp'
+        }).done(function(res) {
+            console.log(res);
+            var data = res.subjects;
+            setData(data);
+        })
+    }
+    function setData(data) {
+        console.log(666, data)
+        $parent = $('.top250-container');
+        $parent.next().hide();
+        for (var i=0;i<data.length;i++) {
+            $node = $('\n' +
+                '                <div class="movie clearfix">\n' +
+                '                    <img src="image/movie1.png" class="movie-preview"/>\n' +
+                '                    <div class="movie-introduce">\n' +
+                '                        <dt class="movie-title">肖申克的救赎</dt>\n' +
+                '                        <dl class="movie-detail"><span class="score">9.6</span>分 / <span class="collection">199999</span>收藏</dl>\n' +
+                '                        <dl class="movie-detail"><span class="year">1994</span> / <span class="type">犯罪</span></dl>\n' +
+                '                        <dl class="movie-detail">导演：<span class="director">shaoxiong</span></dl>\n' +
+                '                        <dl class="movie-detail">主演：<span class="actor">少雄</span></dl>\n' +
+                '                    </div>\n' +
+                '                </div>');
+            $node.find('img').attr('src', data[i].images.small);
+            $node.find('.movie-title').text(data[i].title);
+            $node.find('.score').text(data[i].rating.average);
+            $node.find('.collection').text(data[i].rating.stars);
+            $node.find('.year').text(data[i].year);
+            $node.find('.type').text(function() {
+                var text = '';
+                for (var j=0;j<data[i].genres.length;j++) {
+                    text += text===''? data[i].genres[j] : ' / ' + data[i].genres[j];
+                }
+                return text;
+            });
+            $node.find('.director').text(function() {
+                var text = '';
+                for (var j=0;j<data[i].directors.length;j++) {
+                    text += text===''? data[i].directors[j].name : ' / ' + data[i].directors[j].name;
+                }
+                return text;
+            });
+            $node.find('.actor').text(function() {
+                var text = '';
+                for (var j=0;j<data[i].casts.length;j++) {
+                    text += text===''? data[i].casts[j].name : ' / ' + data[i].casts[j].name;
+                }
+                return text;
+            });
+            console.log($node[0]);
+            $parent.append($node);
+        }
+
     }
 </script>
 </html>
