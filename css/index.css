@@ -24,16 +24,24 @@ section {
 .show {
     display: block;
 }
+.hide {
+    display: none;
+}
 .movie {
     border-bottom: 1px solid #ccc;
     padding: 10px 0;
 }
 .movie-preview {
-    width: 70px;
     float: left;
+    width: 70px;
+    height: 104px;
+}
+.movie-preview img {
+    width: 100%;
 }
 .movie-introduce {
     float: left;
+    width: calc(100% - 80px);
     margin-left: 10px;
 }
 .movie-title {
@@ -47,6 +55,30 @@ section {
 }
 .score {
     color: #FF5722;
+}
+.search-input {
+    float: left;
+    margin-right: 5px;
+    height: 34px;
+    width: calc(100% - 65px);
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+}
+.search-btn {
+    float: left;
+    height: 34px;
+    width: 60px;
+    background-color: #FF5722;
+    color: #fff;
+    border-radius: 3px;
+    border: 1px solid #FF5722;
+    cursor: pointer;
+}
+.no-more {
+    margin-top: 10px;
+    text-align: center;
+    color: #ccc;
 }
 .loading {
     text-align: center;
